@@ -1,5 +1,5 @@
 export default {
-  "inventory": [
+  "collection": [
     {
       "id": 1,
       "title": "Recumbent Dog",

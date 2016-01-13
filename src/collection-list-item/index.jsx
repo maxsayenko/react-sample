@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 
-export default class InventoryListItem extends React.Component {
+export default class CollectionListItem extends React.Component {
     render() {
         return (
             <tr>

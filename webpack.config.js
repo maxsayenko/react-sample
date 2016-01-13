@@ -1,41 +1,44 @@
 var webpack = require('webpack');
 
 module.exports = {
-    //context: __dirname + "/src",
-    entry: "./src/main.jsx",
+    //context: __dirname + '/src',
+    entry: './src/main.jsx',
     output: {
-        filename: "bundle.js",
-        path: __dirname + "/build"
+        filename: 'bundle.js',
+        path: __dirname + '/build'
     },
     module: {
         loaders: [
             {
                 test: /(\.jsx|\.js)$/,
                 exclude: /node_modules/,
-                loaders: ["babel-loader"]
+                loaders: ['babel-loader']
             },
             {
                 test: /\.json$/,
                 exclude: /node_modules/,
-                loaders: ["json-loader"]
+                loaders: ['json-loader']
             },
             {   test: /\.css$/,
                 loader: 'style-loader!css-loader'
             },
+            {   test: /\.less$/,
+                loader: 'less-loader'
+            },
             {   test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-                loader: "file"
+                loader: 'file'
             },
             {
                 test: /\.(woff|woff2)$/,
-                loader: "url-loader?prefix=font/&limit=5000"
+                loader: 'url-loader?prefix=font/&limit=5000'
             },
             {
                 test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-                loader: "url-loader?limit=10000&mimetype=application/octet-stream"
+                loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
             },
             {
                 test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-                loader: "url-loader?limit=10000&mimetype=image/svg+xml"
+                loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
             }
         ]
     },
@@ -44,8 +47,8 @@ module.exports = {
         extensions:         ['', '.js', '.jsx']
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
+        //new webpack.HotModuleReplacementPlugin(),
+        //new webpack.NoErrorsPlugin()
     ],
     devtool: 'inline-source-map',
     devServer: {

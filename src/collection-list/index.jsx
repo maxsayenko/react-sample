@@ -1,11 +1,18 @@
 import React from 'react';
-import InventoryListItem from '../inventory-list-item';
+import CollectionListItem from '../collection-list-item';
+import AddCollectionItemButton from '../add-collection-item-button';
 
-export default class ContentBody extends React.Component {
+export default class CollectionList extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state =  JSON.parse(localStorage.getItem('appData'));
+    }
+
     render() {
-        const inventoryItems = this.props.data.map(item => {
+        const collectionItems = this.state.collection.map(item => {
             const image = item.images[0];
-            return <InventoryListItem
+            return <CollectionListItem
                 key={item.id}
                 image={image}
                 title={item.title}
@@ -15,8 +22,11 @@ export default class ContentBody extends React.Component {
                 />
         });
         return (
-            <div className="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                <h2 className="sub-header">Inventory List</h2>
+            <div className="collection-list col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <h2 className=" sub-header">
+                    Collection
+                    <AddCollectionItemButton />
+                </h2>
                 <div className="table-responsive">
                     <table className="table table-striped">
                         <thead>
@@ -29,7 +39,7 @@ export default class ContentBody extends React.Component {
                         </tr>
                         </thead>
                         <tbody>
-                            { inventoryItems }
+                            { collectionItems }
                         </tbody>
                     </table>
                 </div>
@@ -37,4 +47,5 @@ export default class ContentBody extends React.Component {
             </div>
         );
     }
-};
+
+}
