@@ -1,6 +1,6 @@
+import './styles.scss';
 import React from 'react';
 import CollectionListItem from '../collection-list-item';
-import AddCollectionItemButton from '../add-collection-item-button';
 
 export default class CollectionList extends React.Component {
 
@@ -18,14 +18,15 @@ export default class CollectionList extends React.Component {
                 title={item.title}
                 author={item.author}
                 country={item.country}
-                date={item.date}
-                />
+                date={item.date}/>;
         });
         return (
-            <div className="collection-list col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div className="collection-list">
                 <h2 className=" sub-header">
                     Collection
-                    <AddCollectionItemButton />
+                    <a className="addBtn btn btn-primary" href="/collection/new">
+                        <span className="glyphicon glyphicon-plus"></span>Add
+                    </a>
                 </h2>
                 <div className="table-responsive">
                     <table className="table table-striped">
@@ -43,7 +44,6 @@ export default class CollectionList extends React.Component {
                         </tbody>
                     </table>
                 </div>
-
             </div>
         );
     }

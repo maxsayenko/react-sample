@@ -13,10 +13,12 @@ export default class Content extends React.Component {
                 <div className="container-fluid">
                     <div className="row">
                         <Sidebar />
-                        <CollectionList />
+                        <div className="collection-list col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                            { this.props.children }
+                        </div>
                     </div>
                 </div>
             </div>
-        );
-    }
+        )
+    };
 }

@@ -1,8 +1,6 @@
-var webpack = require('webpack');
-
 module.exports = {
     //context: __dirname + '/src',
-    entry: './src/main.jsx',
+    entry: './src/components/',
     output: {
         filename: 'bundle.js',
         path: __dirname + '/build'
@@ -24,6 +22,9 @@ module.exports = {
             },
             {   test: /\.less$/,
                 loader: 'less-loader'
+            },
+            {   test: /\.scss/,
+                loaders: ["style", "css", "sass"]
             },
             {   test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
                 loader: 'file'
