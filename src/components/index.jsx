@@ -12,14 +12,7 @@ import createBrowserHistory from 'history/lib/createBrowserHistory'
 
 import Content from './content';
 import CollectionList from './collection-list';
-
-const NotFound = React.createClass({
-    render() {
-        return (
-            <h2>Not found</h2>
-        );
-    }
-});
+import NotFound from './not-found';
 
 ReactDOM.render(
     <Router history={ createBrowserHistory() }>
