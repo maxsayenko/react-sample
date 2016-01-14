@@ -1,5 +1,8 @@
 import './styles.scss';
+
 import React from 'react';
+import { Link } from 'react-router';
+
 import CollectionListItem from '../collection-list-item';
 
 export default class CollectionList extends React.Component {
@@ -24,9 +27,9 @@ export default class CollectionList extends React.Component {
             <div className="collection-list">
                 <h2 className=" sub-header">
                     Collection
-                    <a className="addBtn btn btn-primary" href="/collection/new">
+                    <Link className="addBtn btn btn-primary" to="/collection/add">
                         <span className="glyphicon glyphicon-plus"></span>Add
-                    </a>
+                    </Link>
                 </h2>
                 <div className="table-responsive">
                     <table className="table table-striped">
