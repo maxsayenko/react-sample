@@ -1,7 +1,9 @@
 import React from 'react';
 import CollectionItemForm from '../collection-item-form';
 import CollectionStore from '../../stores/collection-store';
-import { createItem as doCreateAction } from '../../actions/collection-actions';
+import {
+    createItem as doCreateAction,
+    updateItem as doUpdateAction } from '../../actions/collection-actions';
 
 export default class EditCollectionItem extends React.Component {
 
@@ -14,11 +16,10 @@ export default class EditCollectionItem extends React.Component {
     }
 
     render() {
-        console.log(doCreateAction);
         let formProps = {
             title: 'Edit Item',
             topClassName: 'edit-item',
-            onSave: this.update
+            onSave: this.update.bind(this)
         };
         if (!this.isEditing) {
             formProps = {
@@ -39,7 +40,8 @@ export default class EditCollectionItem extends React.Component {
     }
 
     update(id, item) {
-        //CollectionActions.updateItem(id, item);
+        console.log(item);
+        doUpdateAction(id, item);
     }
 
 };
