@@ -1,5 +1,6 @@
 'use strict';
 
+// This just a hack to start with a row of data.
 if (!localStorage.appData) {
     const data = require('../model').default;
     localStorage.setItem('appData', JSON.stringify(data));

@@ -2,11 +2,11 @@ export default {
   "collection": {
       1: {
           "id": 1,
-          "title": "Recumbent Dog",
-          "author": "Colima",
+          "title": "Some Collection Item",
+          "author": "Who made this thing?",
           //"region": "West Coast Cultures",
-          "country": "Mexico",
-          "date": "200 BC - AD 200",
+          "country": "United State",
+          "date": "1924",
           //"material": "slip painted ceramic",
           //"cost": "10",
           //"source": "Fily Keita",
