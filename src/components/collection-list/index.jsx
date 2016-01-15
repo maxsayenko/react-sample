@@ -10,14 +10,21 @@ export default class CollectionList extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = CollectionStore.getCollection();
+        this.state = CollectionStore.getCollection() || {};
+    }
+
+    componentDidMount() {
+        CollectionStore.addChangeListener(this.onChange.bind(this));
+    }
+
+    componentWillUnmount() {
+        CollectionStore.removeChangeListener(this.onChange.bind(this));
     }
 
     render() {
-        const collection = this.state.collection;
-        const collectionItems = Object.keys(collection).map(key => {
-            const item = collection[key];
-            const image = item.images[0];
+        const collectionItems = Object.keys(this.state).map(key => {
+            const item = this.state[key];
+            const image = Array.isArray(item.images) ? item.images[0] : '';
             return <CollectionListItem
                 key={ key }
                 image={ image }
@@ -52,6 +59,10 @@ export default class CollectionList extends React.Component {
                 </div>
             </div>
         );
+    }
+
+    onChange() {
+        this.state = CollectionStore.getCollection();
     }
 
 }

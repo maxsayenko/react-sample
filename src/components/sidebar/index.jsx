@@ -7,7 +7,7 @@ export default class Sidebar extends React.Component {
             <div className="col-sm-3 col-md-2 sidebar">
                 <ul className="nav nav-sidebar">
                     <li className="active">
-                        <Link href="/collection">
+                        <Link to="/collection">
                             Collection<span className="sr-only">(current)</span>
                         </Link>
                     </li>

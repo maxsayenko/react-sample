@@ -35,12 +35,10 @@ export default class EditCollectionItem extends React.Component {
     }
 
     create(item) {
-        console.log(item);
         doCreateAction(item);
     }
 
     update(id, item) {
-        console.log(item);
         doUpdateAction(id, item);
     }
 

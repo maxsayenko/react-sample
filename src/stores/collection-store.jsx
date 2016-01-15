@@ -1,38 +1,35 @@
-//import AppDispatcher from '../dispatcher';
+import appDispatcher from '../app-dispatcher';
 import EventEmitter from 'events';
 
-let collection = JSON.parse(localStorage.getItem('appData'));
+let collection = {};
 const CHANGE = 'change';
 
 class CollectionStore extends EventEmitter {
 
     constructor(props) {
         super(props);
-        //this.dispatchToken = AppDispatcher.register(function(payload) {
-        //    const action = payload.action;
-        //
-        //    switch(action.actionType) {
-        //        case 'create':
-        //            if (isValidItem(item)) {
-        //                create(item);
-        //                this.emitChange(CHANGE);
-        //            }
-        //            break;
-        //
-        //        case 'update':
-        //            if (isValidItem(item)) {
-        //                update(action.id, item);
-        //                this.emitChange(CHANGE);
-        //            }
-        //            break;
-        //
-        //        case 'destroy':
-        //            destroy(action.id);
-        //            this.emitChange(CHANGE);
-        //            break;
-        //
-        //    }
-        //});
+        const rawData = localStorage.getItem('appData');
+
+        if (rawData) {
+            collection = JSON.parse(rawData).collection;
+        }
+
+        this.dispatchToken = appDispatcher.register(action => {
+            switch(action.actionType) {
+                case 'create':
+                    create(action.item);
+                    this.emitChange(CHANGE);
+                    break;
+                case 'update':
+                    update(action.id, action.item);
+                    this.emitChange(CHANGE);
+                    break;
+                case 'destroy':
+                    destroy(action.id, action.item);
+                    this.emitChange(CHANGE);
+                    break;
+            }
+        });
     }
 
     getCollection() {
@@ -54,8 +51,9 @@ class CollectionStore extends EventEmitter {
 }
 
 function create(item) {
-    var id = Date.now();
-    collection[id] = assign({id: id}, item);
+    const id = Date.now();
+    collection[id] = Object.assign({id: id}, item);
+    localStorage.setItem('appData', JSON.stringify({collection: collection}));
 }
 
 function destroy(id) {

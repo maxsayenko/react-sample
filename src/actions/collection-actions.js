@@ -1,11 +1,18 @@
-import Dispatcher from 'flux';
+import appDispatcher from '../app-dispatcher';
 
 export function createItem(item) {
-    console.log('create');
+    appDispatcher.dispatch({
+        actionType: 'create',
+        item: item
+    });
 }
 
-export function updateItem(item) {
-    console.log('update');
+export function updateItem(id, item) {
+    appDispatcher.dispatch({
+        actionType: 'update',
+        id: item.id,
+        item: item
+    });
 }
 
 export default {

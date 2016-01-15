@@ -1,7 +1,9 @@
 'use strict';
 
-const data = require('../model').default;
-window.localStorage.setItem('appData', JSON.stringify(data));
+if (!localStorage.appData) {
+    const data = require('../model').default;
+    localStorage.setItem('appData', JSON.stringify(data));
+}
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
