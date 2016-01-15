@@ -1,22 +1,20 @@
 import React from 'react';
 import CollectionItemForm from '../collection-item-form';
 import CollectionStore from '../../stores/collection-store';
-import CollectionActions from '../../actions/collection-actions';
+import { createItem as doCreateAction } from '../../actions/collection-actions';
 
 export default class EditCollectionItem extends React.Component {
 
     constructor(props) {
         super(props);
         this.isEditing = !!this.props.params.id;
-    }
-
-    getInitialState() {
-        //if (isEditing) {
-        //    return
-        //}
+        this.state = this.isEditing ?
+            CollectionStore.getCollection()[this.props.params.id] :
+            null;
     }
 
     render() {
+        console.log(doCreateAction);
         let formProps = {
             title: 'Edit Item',
             topClassName: 'edit-item',
@@ -26,21 +24,22 @@ export default class EditCollectionItem extends React.Component {
             formProps = {
                 title: 'New Item',
                 topClassName: 'create-item',
-                onSave: this.create,
+                onSave: this.create.bind(this),
                 data: null
             }
         }
         return (
-            <CollectionItemForm {...formProps} />
+            <CollectionItemForm { ...this.state } { ...formProps } />
         );
     }
 
     create(item) {
-        CollectionActions.createItem(item);
+        console.log(item);
+        doCreateAction(item);
     }
 
     update(id, item) {
-        CollectionActions.updateItem(id, item);
+        //CollectionActions.updateItem(id, item);
     }
 
 };

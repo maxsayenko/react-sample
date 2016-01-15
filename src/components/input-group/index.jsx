@@ -1,6 +1,16 @@
 import React from 'react';
 
 export default class InputGroup extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { value: null };
+    }
+
+    handleChange(event) {
+        this.setState({value: event.target.value});
+    }
+
     render() {
         return (
             <div className="form-group">
@@ -10,9 +20,11 @@ export default class InputGroup extends React.Component {
                 </label>
                 <div className="col-sm-8">
                     <input type="text"
-                           className={ this.props.inputClasses + ' form-control'}
-                           id={'item' + this.props.name }
-                           placeholder={ this.props.name } />
+                        className={ this.props.inputClasses + ' form-control'}
+                        id={'item' + this.props.name }
+                        placeholder={ this.props.name }
+                        onChange={ this.handleChange.bind(this) }
+                        />
                 </div>
             </div>
         )

@@ -1,5 +1,14 @@
 import Dispatcher from 'flux';
 
-export default class CollectionActions {
+export function createItem(item) {
+    console.log('create');
+}
 
+export function updateItem(item) {
+    console.log('update');
+}
+
+export default {
+    createItem,
+    updateItem
 }

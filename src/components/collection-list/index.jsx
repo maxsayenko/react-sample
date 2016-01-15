@@ -2,6 +2,7 @@ import './styles.scss';
 
 import React from 'react';
 import { Link } from 'react-router';
+import CollectionStore from '../../stores/collection-store';
 
 import CollectionListItem from '../collection-list-item';
 
@@ -9,19 +10,21 @@ export default class CollectionList extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state =  JSON.parse(localStorage.getItem('appData'));
+        this.state = CollectionStore.getCollection();
     }
 
     render() {
-        const collectionItems = this.state.collection.map(item => {
+        const collection = this.state.collection;
+        const collectionItems = Object.keys(collection).map(key => {
+            const item = collection[key];
             const image = item.images[0];
             return <CollectionListItem
-                key={item.id}
-                image={image}
-                title={item.title}
-                author={item.author}
-                country={item.country}
-                date={item.date}/>;
+                key={ key }
+                image={ image }
+                title={ item.title }
+                author={ item.author }
+                country={ item.country }
+                date={ item.date }/>;
         });
         return (
             <div className="collection-list">
