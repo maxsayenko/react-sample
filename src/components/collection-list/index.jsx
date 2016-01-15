@@ -45,7 +45,6 @@ export default class CollectionList extends React.Component {
                     <table className="table table-striped">
                         <thead>
                         <tr>
-                            <th>Image</th>
                             <th>Title</th>
                             <th>Author</th>
                             <th>Country</th>

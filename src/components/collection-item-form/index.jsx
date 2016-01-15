@@ -1,18 +1,6 @@
 import React from 'react';
 import InputGroup from '../input-group';
 
-const fields = [
-    'Title',
-    'Author',
-    'Region',
-    'Country',
-    'Date',
-    'Material',
-    'Cost',
-    'Source',
-    'Location'
-];
-
 export default class CollectionItemForm extends React.Component {
 
     submit(e) {
@@ -26,7 +14,7 @@ export default class CollectionItemForm extends React.Component {
             <div className={ 'collection-item-form ' + this.props.topClassName }>
                 <h2>{ this.props.title }</h2>
                 <form className="form-horizontal">
-                    { fields.map( (field, idx) =>
+                    { this.props.inputFields.map( (field, idx) =>
                         <InputGroup
                             key={ idx }
                             labelClasses='col-sm-2'
@@ -45,10 +33,9 @@ export default class CollectionItemForm extends React.Component {
 
     serializeForm() {
         let data = {};
-        const refs = this.refs;
-        fields.forEach( (refName) => {
+        this.props.inputFields.forEach( (refName) => {
             const field = refName.toLowerCase();
-            data[field] = refs[refName].state.value;
+            data[field] = this.refs[refName].state.value;
         });
         return data;
     }

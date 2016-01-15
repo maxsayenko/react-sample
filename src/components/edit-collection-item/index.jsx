@@ -29,8 +29,21 @@ export default class EditCollectionItem extends React.Component {
                 data: null
             }
         }
+        formProps.inputFields = [
+            'Title',
+            'Author',
+            //'Region',
+            'Country',
+            'Date'/*,
+             'Material',
+             'Cost',
+             'Source',
+             'Location'*/
+        ];
         return (
-            <CollectionItemForm { ...this.state } { ...formProps } />
+            <CollectionItemForm
+                { ...this.state }
+                { ...formProps } />
         );
     }
 
