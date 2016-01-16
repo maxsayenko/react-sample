@@ -1,10 +1,12 @@
 import React from 'react';
+import history from '../../../history';
+
 import './styles.css';
 
 export default class CollectionListItem extends React.Component {
     render() {
         return (
-            <tr>
+            <tr onClick={ this.goToEdit.bind(this) }>
                 <td>{this.props.title}</td>
                 <td>{this.props.author}</td>
                 <td>{this.props.country}</td>
@@ -12,4 +14,9 @@ export default class CollectionListItem extends React.Component {
             </tr>
         )
     }
+
+    goToEdit() {
+        history.replaceState(null, '/collection/' + this.props.id);
+    }
 }
+

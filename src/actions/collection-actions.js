@@ -17,7 +17,7 @@ export function createItem(item) {
 export function updateItem(id, item) {
     appDispatcher.dispatch({
         actionType: 'update',
-        id: item.id,
+        id: id,
         item: item
     });
     navigateToCollection();

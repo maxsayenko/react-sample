@@ -1,5 +1,5 @@
 import React from 'react';
-import CollectionItemForm from '../collection-item-form';
+import CollectionItemForm from './collection-item-form';
 import CollectionStore from '../../stores/collection-store';
 import {
     createItem as doCreateAction,
@@ -19,14 +19,14 @@ export default class EditCollectionItem extends React.Component {
         let formProps = {
             title: 'Edit Item',
             topClassName: 'edit-item',
-            onSave: this.update.bind(this)
+            onSave: this.update.bind(this),
+            formValues: this.state
         };
         if (!this.isEditing) {
             formProps = {
                 title: 'New Item',
                 topClassName: 'create-item',
-                onSave: this.create.bind(this),
-                data: null
+                onSave: this.create.bind(this)
             }
         }
         formProps.inputFields = [
@@ -41,9 +41,7 @@ export default class EditCollectionItem extends React.Component {
              'Location'*/
         ];
         return (
-            <CollectionItemForm
-                { ...this.state }
-                { ...formProps } />
+            <CollectionItemForm { ...formProps } />
         );
     }
 
@@ -51,8 +49,8 @@ export default class EditCollectionItem extends React.Component {
         doCreateAction(item);
     }
 
-    update(id, item) {
-        doUpdateAction(id, item);
+    update(item) {
+        doUpdateAction(this.props.params.id, item);
     }
 
 };

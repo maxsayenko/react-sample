@@ -1,5 +1,5 @@
 import React from 'react';
-import InputGroup from '../input-group';
+import InputGroup from './input-group';
 
 export default class CollectionItemForm extends React.Component {
 
@@ -20,7 +20,9 @@ export default class CollectionItemForm extends React.Component {
                             labelClasses='col-sm-2'
                             inputClasses='col-sm-8'
                             ref={ field }
-                            name={ field } />
+                            name={ field }
+                            value={ this.props.formValues[field.toLowerCase()] }
+                            />
                     ) }
                     <div className="form-group">
                         <div className="col-sm-offset-2 col-sm-10">

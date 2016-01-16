@@ -27,6 +27,5 @@ ReactDOM.render(
             <Route path="collection/:id" component={ EditCollectionItem } />
         </Route>
         <Route path="*" component={ NotFound } />
-
     </Router>, document.getElementById('app')
 );

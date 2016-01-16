@@ -7,11 +7,16 @@ export default class InputGroup extends React.Component {
         this.state = { value: null };
     }
 
+    componentDidMount() {
+        this.setState({ value: this.props.value });
+    }
+
     handleChange(event) {
         this.setState({value: event.target.value});
     }
 
     render() {
+        const value = this.state.value;
         return (
             <div className="form-group">
                 <label htmlFor="inputEmail3"
@@ -24,6 +29,7 @@ export default class InputGroup extends React.Component {
                         id={'item' + this.props.name }
                         placeholder={ this.props.name }
                         onChange={ this.handleChange.bind(this) }
+                        value={ this.state.value }
                         />
                 </div>
             </div>

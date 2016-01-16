@@ -5,4 +5,10 @@
   .addBtn {
     float: right;
   }
+  .table-striped>tbody>tr:hover {
+    background-color: #D9EDF7;
+  }
+  tr {
+    cursor: pointer;
+  }
 }

@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import CollectionStore from '../../stores/collection-store';
 
-import CollectionListItem from '../collection-list-item';
+import CollectionListItem from './collection-list-item';
 
 export default class CollectionList extends React.Component {
 
@@ -27,11 +27,12 @@ export default class CollectionList extends React.Component {
             const image = Array.isArray(item.images) ? item.images[0] : '';
             return <CollectionListItem
                 key={ key }
-                image={ image }
                 title={ item.title }
                 author={ item.author }
                 country={ item.country }
-                date={ item.date }/>;
+                date={ item.date }
+                id={ item.id }
+                />;
         });
         return (
             <div className="collection-list">
@@ -49,6 +50,7 @@ export default class CollectionList extends React.Component {
                             <th>Author</th>
                             <th>Country</th>
                             <th>Date</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>

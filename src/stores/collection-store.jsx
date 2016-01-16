@@ -56,6 +56,12 @@ function create(item) {
     localStorage.setItem('appData', JSON.stringify({collection: collection}));
 }
 
+function update(id, item) {
+    let oldData = collection[id];
+    collection[id] = Object.assign(oldData, item);
+    localStorage.setItem('appData', JSON.stringify({collection: collection}));
+}
+
 function destroy(id) {
     delete collection[id];
 }
