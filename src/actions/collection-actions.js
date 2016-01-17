@@ -7,7 +7,7 @@ function navigateToCollection() {
 
 export function createItem(item) {
     appDispatcher.dispatch({
-        actionType: 'create',
+        actionType: 'createCollectionItem',
         item: item
     });
     navigateToCollection();
@@ -16,11 +16,18 @@ export function createItem(item) {
 
 export function updateItem(id, item) {
     appDispatcher.dispatch({
-        actionType: 'update',
+        actionType: 'updateCollectionItem',
         id: id,
         item: item
     });
     navigateToCollection();
+}
+
+export function deleteItem(id) {
+    appDispatcher.dispatch({
+        actionType: 'deleteCollectionItem',
+        id: id
+    })
 }
 
 export default {

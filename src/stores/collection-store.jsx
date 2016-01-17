@@ -16,16 +16,16 @@ class CollectionStore extends EventEmitter {
 
         this.dispatchToken = appDispatcher.register(action => {
             switch(action.actionType) {
-                case 'create':
+                case 'createCollectionItem':
                     create(action.item);
                     this.emitChange(CHANGE);
                     break;
-                case 'update':
+                case 'updateCollectionItem':
                     update(action.id, action.item);
                     this.emitChange(CHANGE);
                     break;
-                case 'destroy':
-                    destroy(action.id, action.item);
+                case 'deleteCollectionItem':
+                    destroy(action.id);
                     this.emitChange(CHANGE);
                     break;
             }
@@ -53,21 +53,26 @@ class CollectionStore extends EventEmitter {
 function create(item) {
     const id = Date.now();
     collection[id] = Object.assign({id: id}, item);
-    localStorage.setItem('appData', JSON.stringify({collection: collection}));
+    updateRemoteStore();
 }
 
 function update(id, item) {
     let oldData = collection[id];
     collection[id] = Object.assign(oldData, item);
-    localStorage.setItem('appData', JSON.stringify({collection: collection}));
+    updateRemoteStore();
 }
 
 function destroy(id) {
     delete collection[id];
+    updateRemoteStore();
 }
 
 function isValidItem(item) {
     return !!item.title;
+}
+
+function updateRemoteStore() {
+    localStorage.setItem('appData', JSON.stringify({collection: collection}));
 }
 
 export default new CollectionStore();

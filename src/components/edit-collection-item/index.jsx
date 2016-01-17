@@ -26,7 +26,8 @@ export default class EditCollectionItem extends React.Component {
             formProps = {
                 title: 'New Item',
                 topClassName: 'create-item',
-                onSave: this.create.bind(this)
+                onSave: this.create.bind(this),
+                formValues: {}
             }
         }
         formProps.inputFields = [

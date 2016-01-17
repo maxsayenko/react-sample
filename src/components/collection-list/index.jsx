@@ -7,26 +7,34 @@ import CollectionStore from '../../stores/collection-store';
 import CollectionListItem from './collection-list-item';
 
 export default class CollectionList extends React.Component {
-
     constructor(props) {
         super(props);
+        // Store an instance of this function so we can
+        // have context AND unlisten. (Bind creates a new instance).
+        // TODO: This is feeling super hacky -> find a better approach?
+        const onChange = function() {
+            this.setState(CollectionStore.getCollection());
+        };
+        this.onChange = onChange.bind(this);
+    }
+
+    componentWillMount() {
         this.state = CollectionStore.getCollection() || {};
     }
 
     componentDidMount() {
-        CollectionStore.addChangeListener(this.onChange.bind(this));
+        CollectionStore.addChangeListener(this.onChange);
     }
 
     componentWillUnmount() {
-        CollectionStore.removeChangeListener(this.onChange.bind(this));
+        CollectionStore.removeChangeListener(this.onChange);
     }
 
     render() {
         const collectionItems = Object.keys(this.state).map(key => {
             const item = this.state[key];
-            const image = Array.isArray(item.images) ? item.images[0] : '';
             return <CollectionListItem
-                key={ key }
+                key={ item.id }
                 title={ item.title }
                 author={ item.author }
                 country={ item.country }
@@ -60,10 +68,6 @@ export default class CollectionList extends React.Component {
                 </div>
             </div>
         );
-    }
-
-    onChange() {
-        this.state = CollectionStore.getCollection();
     }
 
 }

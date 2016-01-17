@@ -1,0 +1,16 @@
+.collection-list-item {
+  .list-image {
+    max-height: 100px;
+    max-width: 100px;
+  }
+  .glyphicon-pencil {
+    margin-right: 10px;
+    color: #f0ad4e;
+  }
+  .glyphicon-remove {
+    color: #d9534f;
+  }
+  .glyphicon {
+    cursor: pointer;
+  }
+}
