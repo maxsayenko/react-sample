@@ -9,9 +9,6 @@ import CollectionListItem from './collection-list-item';
 export default class CollectionList extends React.Component {
     constructor(props) {
         super(props);
-        // Store an instance of this function so we can
-        // have context AND unlisten. (Bind creates a new instance).
-        // TODO: This is feeling super hacky -> find a better approach?
         const onChange = function() {
             this.setState(CollectionStore.getCollection());
         };
@@ -33,14 +30,15 @@ export default class CollectionList extends React.Component {
     render() {
         const collectionItems = Object.keys(this.state).map(key => {
             const item = this.state[key];
-            return <CollectionListItem
-                key={ item.id }
-                title={ item.title }
-                author={ item.author }
-                country={ item.country }
-                date={ item.date }
-                id={ item.id }
-                />;
+            return (
+                <CollectionListItem
+                    key={ item.id }
+                    title={ item.title }
+                    author={ item.author }
+                    country={ item.country }
+                    date={ item.date }
+                    id={ item.id } />
+            );
         });
         return (
             <div className="collection-list">

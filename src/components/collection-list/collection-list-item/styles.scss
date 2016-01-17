@@ -6,11 +6,17 @@
   .glyphicon-pencil {
     margin-right: 10px;
     color: #f0ad4e;
+    &:hover {
+      text-decoration: none;
+    }
   }
   .glyphicon-remove {
     color: #d9534f;
   }
   .glyphicon {
     cursor: pointer;
+  }
+  .collection-detail-link {
+    display: table-cell;
   }
 }

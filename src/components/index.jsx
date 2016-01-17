@@ -15,7 +15,8 @@ import history from '../history';
 
 import Content from './content';
 import CollectionList from './collection-list';
-import EditCollectionItem from './edit-collection-item';
+import CollectionDetail from './collection-detail';
+import EditCollectionItem from './collection-item-edit';
 import NotFound from './not-found';
 
 ReactDOM.render(
@@ -24,7 +25,7 @@ ReactDOM.render(
         <Route path="/" component={ Content }>
             <Route path="collection" component={ CollectionList } />
             <Route path="collection/add" component={ EditCollectionItem } />
-            <Route path="collection/:id" component={ EditCollectionItem } />
+            <Route path="collection/:id" component={ CollectionDetail } />
         </Route>
         <Route path="*" component={ NotFound } />
     </Router>, document.getElementById('app')

@@ -1,5 +1,5 @@
 import React from 'react';
-import InputGroup from './input-group';
+import InputGroup from '../input-group';
 
 export default class CollectionItemForm extends React.Component {
 
