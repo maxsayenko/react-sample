@@ -9,15 +9,20 @@ import CollectionListItem from './collection-list-item';
 export default class CollectionList extends React.Component {
     constructor(props) {
         super(props);
-        const onChange = function() {
+        this.state = {};
+        let onChange = () => {
             this.state = {};
-            this.setState(CollectionStore.getCollection());
+            CollectionStore.getCollection((data) => {
+                this.setState(data)
+            });
         };
         this.onChange = onChange.bind(this);
     }
 
     componentWillMount() {
-        this.state = CollectionStore.getCollection() || {};
+        CollectionStore.getCollection((data) => {
+            this.setState(data || {});
+        });
     }
 
     componentDidMount() {

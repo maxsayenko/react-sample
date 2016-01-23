@@ -10,9 +10,11 @@ export default class EditCollectionItem extends React.Component {
     constructor(props) {
         super(props);
         this.isEditing = !!this.props.params.id;
-        this.state = this.isEditing ?
-            CollectionStore.getCollection()[this.props.params.id] :
-            null;
+        if (this.isEditing) {
+            CollectionStore.getCollection((data) => {
+                this.state = data[this.props.params.id];
+            });
+        }
     }
 
     render() {

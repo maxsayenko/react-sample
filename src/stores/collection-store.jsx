@@ -8,11 +8,6 @@ class CollectionStore extends EventEmitter {
 
     constructor(props) {
         super(props);
-        const rawData = localStorage.getItem('appData');
-
-        if (rawData) {
-            collection = JSON.parse(rawData).collection;
-        }
 
         this.dispatchToken = appDispatcher.register(action => {
             switch(action.actionType) {
@@ -32,8 +27,18 @@ class CollectionStore extends EventEmitter {
         });
     }
 
-    getCollection() {
-        return collection;
+    getCollection(callback) {
+        if (!Object.keys(collection).length) {
+            setTimeout(() => {
+                const rawData = localStorage.getItem('appData');
+                if (rawData) {
+                    collection = JSON.parse(rawData).collection;
+                }
+                callback(collection);
+            }, 50);
+        } else {
+            callback(collection);
+        }
     }
 
     emitChange() {
@@ -72,7 +77,9 @@ function isValidItem(item) {
 }
 
 function updateRemoteStore() {
-    localStorage.setItem('appData', JSON.stringify({collection: collection}));
+    setTimeout(() => {
+        localStorage.setItem('appData', JSON.stringify({collection: collection}));
+    }, 50);
 }
 
 export default new CollectionStore();
