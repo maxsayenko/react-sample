@@ -1,7 +1,7 @@
 import './styles.scss';
 import React from 'react';
 import { Link } from 'react-router';
-import { deleteItem as doDeleteAction }from '../../../actions/collection-actions';
+import { deleteItem as doDeleteAction } from '../../../actions/collection-actions';
 
 export default class CollectionListItem extends React.Component {
 
@@ -32,7 +32,9 @@ export default class CollectionListItem extends React.Component {
     }
 
     deleteItem() {
-        doDeleteAction(this.props.id);
+        if (confirm('Delete this item permanently?')) {
+            doDeleteAction(this.props.id);
+        }
     }
 }
 

@@ -10,6 +10,7 @@ export default class CollectionList extends React.Component {
     constructor(props) {
         super(props);
         const onChange = function() {
+            this.state = {};
             this.setState(CollectionStore.getCollection());
         };
         this.onChange = onChange.bind(this);
