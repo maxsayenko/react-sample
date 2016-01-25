@@ -3,12 +3,6 @@ import InputGroup from '../input-group';
 
 export default class CollectionItemForm extends React.Component {
 
-    submit(e) {
-        e.preventDefault();
-        const data = this.serializeForm();
-        this.props.onSave(data);
-    }
-
     render() {
         return (
             <div className={ 'collection-item-form ' + this.props.topClassName }>
@@ -33,11 +27,16 @@ export default class CollectionItemForm extends React.Component {
             </div>        );
     }
 
+    submit(e) {
+        e.preventDefault();
+        const data = this.serializeForm();
+        this.props.onSave(data);
+    }
+
     serializeForm() {
         let data = {};
         this.props.inputFields.forEach( (refName) => {
-            const field = refName.toLowerCase();
-            data[field] = this.refs[refName].state.value;
+            data[refName.toLowerCase()] = this.refs[refName].state.value;
         });
         return data;
     }
