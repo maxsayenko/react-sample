@@ -13,7 +13,7 @@ export default class PrimaryNav extends React.Component {
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <Link className="navbar-brand" to="/">Three-Fourths Fart Collection</Link>
+                        <Link className="navbar-brand" to="/">Collection Manager</Link>
                     </div>
                     <div id="navbar" className="navbar-collapse collapse">
                         <ul className="nav navbar-nav navbar-right">
