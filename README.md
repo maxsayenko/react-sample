@@ -10,7 +10,7 @@ Goals for this test project:
 Create and read are working, need to wire up edit and delete.
 
 ```
-npm install
+npm i
 ```
 -- then --
 ```
